@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAYERN vs AJAX - TALANTA STADIUM</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080808;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;padding:12px;display:flex;justify-content:center;min-height:100vh}
+.box{max-width:420px;width:100%}
+.header{text-align:center;padding:20px 0}
+.header h1{font-size:32px;line-height:1.1;font-weight:900}
+.header .vs{color:#00ff88;font-size:18px;margin:8px 0}
+.badge{background:#00ff88;color:#000;padding:8px 16px;border-radius:100px;font-weight:900;font-size:12px;display:inline-block;margin-top:10px}
+.sub{color:#777;font-size:13px;margin-top:10px}
+.card{background:#141414;border:1px solid #222;border-radius:28px;padding:22px;margin-top:15px}
+.numBox{background:#00ff88;color:#000;padding:16px;border-radius:16px;text-align:center;margin:14px 0}
+.numBox small{display:block;font-size:11px;opacity:.7;letter-spacing:1px}
+.numBox b{font-size:22px;letter-spacing:1px}
+.btn{padding:16px;border-radius:16px;border:1px solid #2a2a2a;background:#1c1c1c;color:#fff;width:100%;margin:7px 0;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;cursor:pointer}
+.btn.active{background:#fff;color:#000;border-color:#fff}
+.btn span:last-child{opacity:.8}
+.call{display:block;background:#00ff88;color:#000;padding:16px;border-radius:16px;text-align:center;text-decoration:none;font-weight:900;margin:14px 0;font-size:16px}
+.main{background:#fff;color:#000;border:none;width:100%;padding:18px;border-radius:16px;font-weight:900;font-size:17px;cursor:pointer;margin-top:5px}
+.ticket{background:#fff;color:#000;padding:18px;border-radius:18px;margin-top:18px;display:none;line-height:1.5}
+.footer{text-align:center;color:#555;font-size:11px;margin:20px 0}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="header">
+<h1>BAYERN<br><span style="color:#888">MUNICH</span><div class="vs">VS</div>AJAX<br><span style="color:#888">AMSTERDAM</span></h1>
+<div class="badge">🏟️ TALANTA STADIUM - NAIROBI</div>
+<div class="sub">Saturday Nov 08, 2025 • 8:00 PM EAT • Gate 7</div>
+</div>
+
+<div class="card">
+<div style="text-align:center;color:#888;font-size:12px;letter-spacing:1px">LIPA KWA M-PESA HAPA</div>
+<div class="numBox">
+<small>M-PESA NUMBER</small>
+<b>+254768479834</b>
+</div>
+
+<div style="color:#888;font-size:12px;margin-bottom:8px">CHAGUA KITI:</div>
+<button class="btn active" id="b1" onclick="chagua('VIP','10000','b1')"><span>🔴 VIP LOUNGE</span><span>KSh 10,000</span></button>
+<button class="btn" id="b2" onclick="chagua('LOWER DECK','8000','b2')"><span>🟠 LOWER DECK</span><span>KSh 8,000</span></button>
+<button class="btn" id="b3" onclick="chagua('REGULAR','5000','b3')"><span>⚪ REGULAR</span><span>KSh 5,000</span></button>
+<button class="btn" id="b4" onclick="chagua('GREEN ARMY','2000','b4')"><span>🟢 GREEN ARMY</span><span>KSh 2,000</span></button>
+
+<a class="call" id="lipalink" href="tel:*334*1*254768479834*10000#">👉 GUSA HAPA KULIPA KSh 10,000</a>
+
+<button class="main" onclick="nunua()">NIMESHALIPA → PATA TIKETI</button>
+
+<div id="r" class="ticket"></div>
+
+<div style="text-align:center;margin-top:15px">
+<a href="tel:+254768479834" style="color:#666;text-decoration:none;font-size:13px">📞 Msaada: +254768479834</a>
+</div>
+</div>
+
+<div class="footer">Pesa inaingia direct kwa +254768479834 • Tiketi ni halali kwa siku ya mechi pekee</div>
+</div>
+
+<script>
+let ch="VIP"; let price="10000";
+function chagua(name,p,id){
+ ch=name; price=p;
+ document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.getElementById('lipalink').href="tel:*334*1*254768479834*"+p+"#";
+ document.getElementById('lipalink').innerHTML="👉 GUSA HAPA KULIPA KSh "+parseInt(p).toLocaleString();
+}
+function nunua(){
+ let c=prompt("HATUA 2:\n1. Ulituma KSh "+price+" kwa +254768479834?\n\n2. Weka hapa M-Pesa Code yako (mfano QH45...):");
+ if(!c || c.length < 4) return;
+ let code=c.trim().toUpperCase();
+ let tiketi="TALANTA-"+code.slice(-4)+"-"+Math.floor(1000+Math.random()*9000);
+ let div=document.getElementById('r');
+ div.style.display='block';
+ div.innerHTML="<div style='text-align:center'>✅ <b>TIKETI IMETHIBITISHWA</b><br><br><div style='font-size:20px;font-weight:900'>BAYERN vs AJAX</div><div style='color:#666;font-size:12px'>TALANTA STADIUM</div><hr style='margin:12px 0;border:none;border-top:1px dashed #ccc'><div style='text-align:left;font-size:13px'>Kiti: <b>"+ch+"</b><br>Bei: <b>KSh "+price+"</b><br>Namba: +254768479834<br>Mpesa Code: <b>"+code+"</b><br><br>Tiketi No:<br><b style='font-size:18px;letter-spacing:1px'>"+tiketi+"</b></div><hr style='margin:12px 0;border:none;border-top:1px dashed #ccc'><div style='font-size:11px;color:#666'>Onyesha screenshot hii getini. Usitume kwa mtu mwingine.</div></div>";
+ window.scrollTo(0,document.body.scrollHeight);
+}
+</script>
+</body>
+</html>
